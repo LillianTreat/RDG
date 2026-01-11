@@ -132,16 +132,6 @@ class Database {
         );
     }
 
-    // /**
-    //  * Checks whether a user is a choreographer.
-    //  * @param {String} email The email to check.
-    //  * @param {Number} id The id to check.
-    //  * @returns Whether a user associated with the provided email is a choreographer.
-    //  */
-    // userIsChoreographer(choreographerEmail, choreographerID) {
-    //     const query = "SELECT EXISTS(SELECT 1 FROM Choreographers WHERE choreographerEmail = ? AND choreographerID = ?) AS valueExists";
-    //     return this.#db.prepare(query).get(choreographerEmail, choreographerID)["valueExists"] === 1;
-    // }
 
     /**
      * Adds dancer to dance
@@ -156,6 +146,7 @@ class Database {
         this.#db.prepare(query).run(studentID, danceID);
     }
 
+
     /**
      * Gets all dances.
      * @returns {Array} An array of all dances.
@@ -165,6 +156,18 @@ class Database {
         const query = "SELECT * FROM Dances";
         return this.#db.prepare(query).all();
     }
+
+    /**
+     * Checks whether a user is a choreographer.
+     * @param {String} email The email to check.
+     * @param {Number} id The id to check.
+     * @returns Whether a user associated with the provided email is a choreographer.
+     */
+    userIsChoreographer(choreographerEmail, choreographerID) {
+        const query = "SELECT EXISTS(SELECT 1 FROM Choreographers WHERE choreographerEmail = ? AND choreographerID = ?) AS valueExists";
+        return this.#db.prepare(query).get(choreographerEmail, choreographerID)["valueExists"] === 1;
+    }
+    
 
     /******************************************************************
     * 

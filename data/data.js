@@ -1,35 +1,36 @@
 const Dancers = [
-    { studentID: 592648, 
-    name: "Lillian Stafford", 
-    pronouns: "she/her", 
-    auditionNumber: 206, 
-    phone: 5415132745, 
-    email: "ltstafford@pugetsound.edu", 
-    classYear: "Sophomore",
-    numDances: 3,
-    pocDance: false,
-    grizzlies: true,
-    committee: "No Committee",
-    danceLevel: "foo",
-    experience: "bar",
-    isChoreographer: true, 
+    {
+        studentID: 592648,
+        name: "Lillian Stafford",
+        pronouns: "she/her",
+        auditionNumber: 206,
+        phone: 5415132745,
+        email: "ltstafford@pugetsound.edu",
+        classYear: "Sophomore",
+        numDances: 3,
+        pocDance: false,
+        grizzlies: true,
+        committee: "No Committee",
+        danceLevel: "foo",
+        experience: "bar",
+        isChoreographer: true,
     },
 
     {
-    studentID: 123456,
-    name: "Peachan Gill", 
-    pronouns: "she/her", 
-    auditionNumber: 101, 
-    phone: 5031234567, 
-    email: "pgill@pugetsound.edu", 
-    classYear: "Sophomore",
-    numDances: 2,
-    pocDance: true,
-    grizzlies: false,
-    committee: "No Committee",
-    danceLevel: "meow",
-    experience: "meow",
-    isChoreographer: false     
+        studentID: 123456,
+        name: "Peachan Gill",
+        pronouns: "she/her",
+        auditionNumber: 101,
+        phone: 5031234567,
+        email: "pgill@pugetsound.edu",
+        classYear: "Sophomore",
+        numDances: 2,
+        pocDance: true,
+        grizzlies: false,
+        committee: "No Committee",
+        danceLevel: "meow",
+        experience: "meow",
+        isChoreographer: false
     }
 
 ]
@@ -118,7 +119,7 @@ function addDances(db) {
 }
 
 function addDancerInfo(db) {
-    for (let dancer of Dancers){
+    for (let dancer of Dancers) {
         db.addDancerInfo(dancer.name, dancer.pronouns, dancer.auditionNumber, dancer.phone, dancer.email, dancer.classYear, dancer.numDances, dancer.pocDance, dancer.grizzlies, dancer.committee, dancer.danceLevel, dancer.experience, dancer.isChoreographer);
     }
 }

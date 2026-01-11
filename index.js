@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 });
 
 
-/************* Our Own Middleware ****************/
+/************* My Middleware ****************/
 const attachDatabase = function (req, res, next){
     req.db = db; 
     next(); 
@@ -79,7 +79,7 @@ if (process.env.TEST_MODE === "true") {
 app.route('/') 
     .get((req, res) => { 
         console.log('someone is on the local host!');
-        res.redirect('/login');
+        res.redirect('/dancerForm');
     });
 
 app.route('/signup')
@@ -92,7 +92,7 @@ app.route('/signup')
         let studentID = req.body.studentID;
 
         try{
-            db.addUser(email, studentID);
+            db.addDancer(email, studentID);
             console.log('successful signup');
             if (db.dancerExists(email, studentID)) {
                 return res.render('login', { flag: 'USER EXISTS' });
@@ -118,17 +118,8 @@ app.route('/login')
         let studentID = req.body.studentID;
 
         try{
-            if (db.userIsChoreographer(email, studentID) === true){
-                return res.render('choreoHomepage', { email: email});
-            }
-            else if (db.dancerExists(email, studentID) === true){
-                // Ensure the dancer form always receives `danceNames` the template expects
-                let dances = db.getAllDances();
-                let danceNames = [];
-                for (let dance of dances) {
-                    danceNames.push(dance.choreographerName);
-                }
-                return res.render('dancerForm', { email: email, danceNames: danceNames });
+            if (db.dancerExists(email, studentID)) {
+                return res.render('dancerForm', { flag: 'SUCCESSFUL LOGIN' });
             }
             else{
                 return res.render('login', {flag: 'INVALID CREDENTIALS'});
@@ -149,7 +140,7 @@ app.route('/dancerForm')
         for (let dance of dances) {
             danceNames.push(dance.choreographerName);
         }
-        console.log(danceNames);
+
         res.render('dancerForm', { danceNames: danceNames });
     })
     .post((req, res) => {
