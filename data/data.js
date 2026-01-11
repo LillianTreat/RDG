@@ -13,7 +13,7 @@ const Dancers = [
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: true,
+        isChoreographer: true
     },
 
     {
@@ -31,7 +31,75 @@ const Dancers = [
         danceLevel: "meow",
         experience: "meow",
         isChoreographer: false
-    }
+    },
+
+    {
+        studentID: 222222,
+        name: "Choreographer 2",
+        pronouns: "she/her",
+        auditionNumber: 22,
+        phone: 5415132745,
+        email: "choreographer2@pugetsound.edu",
+        classYear: "Sophomore",
+        numDances: 3,
+        pocDance: false,
+        grizzlies: true,
+        committee: "No Committee",
+        danceLevel: "foo",
+        experience: "bar",
+        isChoreographer: true
+    },
+
+    {
+        studentID: 333333,
+        name: "Choreographer 3",
+        pronouns: "she/her",
+        auditionNumber: 33,
+        phone: 5415132745,
+        email: "choreographer3@pugetsound.edu",
+        classYear: "Sophomore",
+        numDances: 2,
+        pocDance: false,
+        grizzlies: true,
+        committee: "No Committee",
+        danceLevel: "foo",
+        experience: "bar",
+        isChoreographer: true
+    },
+
+    {
+        studentID: 987654,
+        name: "Dancer 2",
+        pronouns: "she/her",
+        auditionNumber: 65,
+        phone: 5415132745,
+        email: "dancer2@pugetsound.edu",
+        classYear: "Sophomore",
+        numDances: 2,
+        pocDance: false,
+        grizzlies: true,
+        committee: "No Committee",
+        danceLevel: "foo",
+        experience: "bar",
+        isChoreographer: false
+    },
+
+    {
+        studentID: 765432,
+        name: "Dancer 3",
+        pronouns: "he/him",
+        auditionNumber: 85,
+        phone: 5415132745,
+        email: "dancer3@pugetsound.edu",
+        classYear: "Senior",
+        numDances: 1,
+        pocDance: false,
+        grizzlies: true,
+        committee: "No Committee",
+        danceLevel: "foo",
+        experience: "bar",
+        isChoreographer: false
+    },
 
 ]
 
@@ -45,7 +113,7 @@ const Dances = [
     },
     {
         danceID: 2,
-        choreographerID: 2,
+        choreographerID: 222222,
         choreographerName: "Choreographer Two",
         choreographerEmail: "choreographer2@pugetsound.edu",
         styleDifficulty: "Advanced"
@@ -87,6 +155,10 @@ const Dances = [
     },
 ]
 
+
+
+/*-----------------Data Loading------------------*/
+
 /**
  * Loads all test data
  * @param {Database} db 
@@ -100,11 +172,6 @@ function loadTestData(db) {
         console.log(`data/loadTestData: ${error}`);
     }
 }
-
-
-/*------------------------------------------
- *          Private Functions
- *------------------------------------------*/
 
 function addDancers(db) {
     for (let dancer of Dancers) {

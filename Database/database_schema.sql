@@ -10,7 +10,8 @@ CREATE TABLE Dances (
 	choreographerName TEXT,
 	choreographerEmail TEXT,
 	styleDifficulty TEXT,
-	numDancers NUMBER
+	numDancers NUMBER,
+	participants ARRAY
 );
 
 CREATE TABLE Dancers (
