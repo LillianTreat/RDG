@@ -1,0 +1,112 @@
+/* Page layout */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #f6f7fb;
+    color: #333;
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2c2c54;
+}
+
+/* Form container */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Grouping for inputs */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+/* Inline groups (radios & checkboxes) */
+.form-group.inline {
+    flex-direction: column;
+}
+
+.form-group.inline label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+    font-weight: normal;
+}
+
+/* Labels */
+label,
+.group-label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+/* Inputs, selects, textarea */
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    padding: 0.6rem 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus state */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #6c63ff;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+/* Radio & checkbox spacing */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 0.4rem;
+}
+
+/* Range slider */
+input[type="range"] {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Submit button (if you add one) */
+button,
+input[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #584fe0;
+}
