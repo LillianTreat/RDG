@@ -1,10 +1,10 @@
 const bodyParser = require('body-parser');
 const { Database } = require('./Database/db_interface');
-const express = require('express'); 
-const path = require('path');
 const data = require('./data/data.js');
-const winston = require('winston');
+const express = require('express'); 
 const fs = require('fs');
+const path = require('path');
+const winston = require('winston');
 
 
 /************* Create Server and Database ****************/
