@@ -171,8 +171,6 @@ app.route('/dancerForm')
         }
         db.addDancePreferences(email, dancePreferences);
 
-
-
     });
 
 /* Start the server */

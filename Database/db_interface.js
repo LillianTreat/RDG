@@ -179,10 +179,12 @@ class Database {
      * @param {Number} id The id to check.
      * @returns Whether a user associated with the provided email is a choreographer.
      */
-    userIsChoreographer(choreographerEmail, choreographerID) {
-        const query = "SELECT EXISTS(SELECT 1 FROM Choreographers WHERE choreographerEmail = ? AND choreographerID = ?) AS valueExists";
-        return this.#db.prepare(query).get(choreographerEmail, choreographerID)["valueExists"] === 1;
+    userIsChoreographer(email) {
+        this.#verifyExists("Dancers", "email", email);
+        const query = "SELECT isChoreographer FROM Dancers WHERE email = ?";
+        return this.#db.prepare(query).get(email)["isChoreographer"] === 1;
     }
+    
     
 
     /******************************************************************
