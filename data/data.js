@@ -159,10 +159,6 @@ const Dances = [
 
 /*-----------------Data Loading------------------*/
 
-/**
- * Loads all test data
- * @param {Database} db 
- */
 function loadTestData(db) {
     try {
         addDancers(db);

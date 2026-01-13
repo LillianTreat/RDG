@@ -44,7 +44,7 @@ class Database {
 
     /******************************************************************
      * 
-     *                      USER REGISTRATION
+     *                      ADDING methods
      * 
      ******************************************************************/
 
@@ -77,12 +77,12 @@ class Database {
         );
     }
 
-    addDancerInfo(name, pronouns, auditionNumber, phone, email, classYear, numDances, pocDance, grizzlies, committee, danceLevel, experience, isChoreographer) {
+    addDancerInfo(name, pronouns, auditionNumber, phone, email, classYear, numDances, pocDance, grizzlies, committee, danceLevel, experience, dancePreferences) {
         if (!this.dancerExists(email)) {
             throw new Error("addDancerInfo: dancer does not exist.");
         }
 
-        const query = "UPDATE Dancers SET name = ?, pronouns = ?, auditionNumber = ?, phone = ?, classYear = ?, numDances = ?, pocDance = ?, grizzlies = ?, committee = ?, danceLevel = ?, experience = ?, isChoreographer = ? WHERE email = ?";
+        const query = "UPDATE Dancers SET name = ?, pronouns = ?, auditionNumber = ?, phone = ?, classYear = ?, numDances = ?, pocDance = ?, grizzlies = ?, committee = ?, danceLevel = ?, experience = ?, isChoreographer = NULL, dancePreferences = NULL WHERE email = ?";
         this.#db.prepare(query).run(
             name,
             pronouns,
@@ -96,7 +96,7 @@ class Database {
             committee,
             danceLevel,
             experience,
-            isChoreographer
+            dancePreferences,
         );
     }
 
@@ -111,17 +111,7 @@ class Database {
             email
         );
     }
-
-    /**
-    * Checks whether a dancer exists.
-    * @param {String} email The email to check.
-    * @param {Number} id The id to check.
-    * @returns Whether a dancer associated with the provided email exists.
-    */
-    dancerExists(email) {
-        const query = "SELECT EXISTS(SELECT 1 FROM Dancers WHERE email = ?) AS valueExists";
-        return this.#db.prepare(query).get(email)["valueExists"] === 1;
-    }
+    
 
     addDance(choreographerID, choreographerEmail, choreographerName, styleDifficulty) {
         if (choreographerID === "") {
@@ -134,8 +124,10 @@ class Database {
             throw new Error("addDance: choreographerName must not be an empty string.");
         }
 
-        this.addDancer(choreographerEmail, choreographerID);
-  
+        if (!this.dancerExists(choreographerEmail)){
+            this.addDancer(choreographerEmail, choreographerID);
+        };
+        
         const query = "INSERT INTO Dances (choreographerID, choreographerEmail, choreographerName, styleDifficulty) VALUES (?, ?, ?, ?)";
         this.#db.prepare(query).run(
             choreographerID,
@@ -149,43 +141,45 @@ class Database {
     }
 
 
-    /**
-     * Adds dancer to dance
-     * @param {Number} studentID 
-     * @param {Number} danceID 
-     */
-    addToDance(studentID, danceID) {
-        this.#verifyExists("Dancers", "studentID", studentID);
+    addToDance(email, danceID) {
+        this.#verifyExists("Dancers", "email", email);
         this.#verifyExists("Dances", "danceID", danceID);
 
-        const query = "INSERT INTO Dances (studentID, danceID) VALUES (?, ?)";
-        this.#db.prepare(query).run(studentID, danceID);
+        const query = "INSERT INTO danceParticipants (dancerEmail, danceID) VALUES (?, ?)";
+        this.#db.prepare(query).run(email, danceID);
     }
 
 
-    /**
-     * Gets all dances.
-     * @returns {Array} An array of all dances.
-     */
+    removeFromDance(email, danceID) {
+        this.#verifyExists("Dancers", "email", email);
+        this.#verifyExists("Dances", "danceID", danceID);
+
+        const query = "DELETE FROM participants WHERE email = ?, danceID = ?";
+        this.#db.prepare(query).run(email, danceID);
+    }
+
+    /******************************************************************
+     * 
+     *                      CHECKING methods
+     * 
+     ******************************************************************/
+
     getAllDances() {
         this.#verifyExists('Dances');
         const query = "SELECT * FROM Dances";
         return this.#db.prepare(query).all();
     }
 
-    /**
-     * Checks whether a user is a choreographer.
-     * @param {String} email The email to check.
-     * @param {Number} id The id to check.
-     * @returns Whether a user associated with the provided email is a choreographer.
-     */
     userIsChoreographer(email) {
         this.#verifyExists("Dancers", "email", email);
         const query = "SELECT isChoreographer FROM Dancers WHERE email = ?";
         return this.#db.prepare(query).get(email)["isChoreographer"] === 1;
     }
     
-    
+    dancerExists(email) {
+        const query = "SELECT EXISTS(SELECT 1 FROM Dancers WHERE email = ?) AS valueExists";
+        return this.#db.prepare(query).get(email)["valueExists"] === 1;
+    }
 
     /******************************************************************
     * 
