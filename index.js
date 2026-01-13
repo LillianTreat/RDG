@@ -135,20 +135,21 @@ app.route('/dancerForm')
     .get((req, res) => {
         const db = req.db;
         const logger = req.logger;
-        let email = req.body.email;
 
         let dances = db.getAllDances();
+        console.log(dances);
         let danceNames = [];
         for (let dance of dances) {
             danceNames.push(dance.choreographerName);
         }
-
+        console.log(danceNames);
         res.render('dancerForm', { danceNames: danceNames });
     })
     .post((req, res) => {
+        console.log('into the post route!')
         const db = req.db;
         const logger = req.logger;
-        let email = req.body.email;
+        const email = req.body.email;
 
         db.addDancerInfo(
             req.body.name,
