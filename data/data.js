@@ -8,12 +8,12 @@ const Dancers = [
         email: "ltstafford@pugetsound.edu",
         classYear: "Sophomore",
         numDances: 3,
-        pocDance: false,
-        grizzlies: true,
+        pocDance: 0,
+        grizzlies: 1,
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: true
+        isChoreographer: 1
     },
 
     {
@@ -25,12 +25,12 @@ const Dancers = [
         email: "pgill@pugetsound.edu",
         classYear: "Sophomore",
         numDances: 2,
-        pocDance: true,
-        grizzlies: false,
+        pocDance: 1,
+        grizzlies: 0,
         committee: "No Committee",
         danceLevel: "meow",
         experience: "meow",
-        isChoreographer: false
+        isChoreographer: 0
     },
 
     {
@@ -42,12 +42,12 @@ const Dancers = [
         email: "choreographer2@pugetsound.edu",
         classYear: "Sophomore",
         numDances: 3,
-        pocDance: false,
-        grizzlies: true,
+        pocDance: 0,
+        grizzlies: 1,
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: true
+        isChoreographer: 1
     },
 
     {
@@ -59,12 +59,12 @@ const Dancers = [
         email: "choreographer3@pugetsound.edu",
         classYear: "Sophomore",
         numDances: 2,
-        pocDance: false,
-        grizzlies: true,
+        pocDance: 0,
+        grizzlies: 1,
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: true
+        isChoreographer: 1
     },
 
     {
@@ -76,12 +76,12 @@ const Dancers = [
         email: "dancer2@pugetsound.edu",
         classYear: "Sophomore",
         numDances: 2,
-        pocDance: false,
-        grizzlies: true,
+        pocDance: 0,
+        grizzlies: 1,
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: false
+        isChoreographer: 0
     },
 
     {
@@ -93,12 +93,12 @@ const Dancers = [
         email: "dancer3@pugetsound.edu",
         classYear: "Senior",
         numDances: 1,
-        pocDance: false,
-        grizzlies: true,
+        pocDance: 0,
+        grizzlies: 1,
         committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
-        isChoreographer: false
+        isChoreographer: 0
     },
 
 ]

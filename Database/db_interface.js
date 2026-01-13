@@ -137,7 +137,7 @@ class Database {
         );
 
         const query2 = "UPDATE Dancers SET isChoreographer = ? WHERE email = ?";
-        this.#db.prepare(query2).run(true, choreographerEmail);
+        this.#db.prepare(query2).run(1, choreographerEmail);
     }
 
 
@@ -154,7 +154,7 @@ class Database {
         this.#verifyExists("Dancers", "email", email);
         this.#verifyExists("Dances", "danceID", danceID);
 
-        const query = "DELETE FROM participants WHERE email = ?, danceID = ?";
+        const query = "DELETE FROM danceParticipants WHERE dancerEmail = ? AND danceID = ?";
         this.#db.prepare(query).run(email, danceID);
     }
 
@@ -167,7 +167,7 @@ class Database {
     getAllDances() {
         this.#verifyExists('Dances');
         const query = "SELECT * FROM Dances";
-        return this.#db.prepare(query).all();
+        return this.#db.prepare(query).all()
     }
 
     userIsChoreographer(email) {

@@ -137,12 +137,11 @@ app.route('/dancerForm')
         const logger = req.logger;
 
         let dances = db.getAllDances();
-        console.log(dances);
         let danceNames = [];
         for (let dance of dances) {
             danceNames.push(dance.choreographerName);
         }
-        console.log(danceNames);
+
         res.render('dancerForm', { danceNames: danceNames });
     })
     .post((req, res) => {
