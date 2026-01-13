@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/prezHomepage.js" defer></script>
+    <link rel="stylesheet" href="/css/login.css">
     <title>President's Homepage</title>
 </head>
 
@@ -11,18 +13,26 @@
     <h1>Welcome RDG Prez!</h1>
 
     <button type="button" id="openAddDanceDialog">Add Dance</button>
-    <dialog id="addDanceDialog">
-        <form action="/addDance" method="POST">
+
+    <dialog class="dialog" id="addDanceDialog">
+        <form action="/addDance" method="post">
+            <button class="close-button" id="closeDialog">X</button><br>
+
             <label for="email">Choreographer Email:</label>
-            <input type="email" id="email" name="email" required> <br>
+            <input type="email" id="email" name="email" required> <br><br>
 
             <label for="name">Choreographer Name:</label>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" required><br><br>
 
             <button type="submit">Add Dance</button>
         </form>
     </dialog>
 
+    <ul id="danceList">
+        <% for (let dance of danceNames) { %>
+            <li><%= dance %></li>
+        <% } %>
+    </ul>
 </body>
 
 </html>

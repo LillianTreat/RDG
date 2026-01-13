@@ -110,7 +110,7 @@ app.route('/signup')
 
 app.route('/login')
     .get((req, res) => {
-        res.render('login', {flag: 'MANUAL'});
+        res.render('login');
     })
     .post((req, res) =>{
         let db = req.db;
@@ -170,6 +170,27 @@ app.route('/dancerForm')
             dancePreferences.push(req.body[choice]);
         }
         db.addDancePreferences(email, dancePreferences);
+
+    });
+
+    app.route('/prezHomepage') 
+    .get((req, res) => { 
+        const db = req.db;
+
+        let dances = db.getAllDances();
+        let danceNames = [];
+        for (let dance of dances) {
+            danceNames.push(dance.choreographerName);
+        }
+
+        res.render('prezHomepage', { danceNames: danceNames });
+    })
+    .post((req, res) => {
+        const db = req.db;
+
+        db.addDance(req.body.email, req.body.name);
+        res.redirect('/prezHomepage')
+
 
     });
 
