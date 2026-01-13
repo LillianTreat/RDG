@@ -129,6 +129,7 @@ app.route('/login')
             res.render('login', {flag: 'LOGIN ERROR'});
         }
     });
+    
 
 app.route('/dancerForm')
     .get((req, res) => {
