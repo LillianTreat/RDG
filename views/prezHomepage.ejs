@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>President's Homepage</title>
 </head>
+
 <body>
-    
+    <h1>Welcome RDG Prez!</h1>
+
+    <button type="button" id="openAddDanceDialog">Add Dance</button>
+    <dialog id="addDanceDialog">
+        <form action="/addDance" method="POST">
+            <label for="email">Choreographer Email:</label>
+            <input type="email" id="email" name="email" required> <br>
+
+            <label for="name">Choreographer Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <button type="submit">Add Dance</button>
+        </form>
+    </dialog>
+
 </body>
+
 </html>

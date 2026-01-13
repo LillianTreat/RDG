@@ -8,10 +8,8 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE Dances (
 	danceID NUMBER PRIMARY KEY,
-	choreographerID NUMBER,
 	choreographerName TEXT,
 	choreographerEmail TEXT,
-	styleDifficulty TEXT,
 	numDancers NUMBER,
 	participants ARRAY
 );

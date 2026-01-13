@@ -113,10 +113,7 @@ class Database {
     }
     
 
-    addDance(choreographerID, choreographerEmail, choreographerName, styleDifficulty) {
-        if (choreographerID === "") {
-            throw new Error("addDance: choreographerID must not be an empty string.");
-        }
+    addDance(choreographerEmail, choreographerName) {
         if (choreographerEmail === "") {
             throw new Error("addDance: choreographerEmail must not be an empty string.");
         }
@@ -125,15 +122,13 @@ class Database {
         }
 
         if (!this.dancerExists(choreographerEmail)){
-            this.addDancer(choreographerEmail, choreographerID);
+            this.addDancer(choreographerEmail);
         };
         
-        const query = "INSERT INTO Dances (choreographerID, choreographerEmail, choreographerName, styleDifficulty) VALUES (?, ?, ?, ?)";
+        const query = "INSERT INTO Dances (choreographerEmail, choreographerName) VALUES (?, ?)";
         this.#db.prepare(query).run(
-            choreographerID,
             choreographerEmail,
             choreographerName,
-            styleDifficulty
         );
 
         const query2 = "UPDATE Dancers SET isChoreographer = ? WHERE email = ?";
