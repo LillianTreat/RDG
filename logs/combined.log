@@ -68,3 +68,12 @@
 1/13/2026, 11:08:57 AM [INFO]: GET /login
 1/13/2026, 11:09:24 AM [INFO]: GET /
 1/13/2026, 11:09:24 AM [INFO]: GET /dancerForm
+1/13/2026, 11:19:35 AM [INFO]: GET /login
+1/13/2026, 11:19:35 AM [INFO]: GET /Scripts/login.js
+1/13/2026, 11:19:40 AM [INFO]: GET /signup
+1/13/2026, 11:19:59 AM [INFO]: GET /
+1/13/2026, 11:19:59 AM [INFO]: GET /dancerForm
+1/13/2026, 11:40:19 AM [INFO]: GET /dancerForm
+1/13/2026, 11:40:21 AM [INFO]: GET /data/tempDanceList.pdf
+1/13/2026, 11:40:33 AM [INFO]: GET /dancerForm
+1/13/2026, 11:40:35 AM [INFO]: GET /data/tempDanceList.pdf

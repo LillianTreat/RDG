@@ -100,6 +100,18 @@ class Database {
         );
     }
 
+    addDancePreferences(email, dancePreferences){
+        if (!this.dancerExists(email)) {
+            throw new Error("addDancePreferences: dancer does not exist.");
+        }
+
+        const query = "UPDATE Dancers SET dancePreferences = ? WHERE email = ?";
+        this.#db.prepare(query).run(
+            JSON.stringify(dancePreferences),
+            email
+        );
+    }
+
     /**
     * Checks whether a dancer exists.
     * @param {String} email The email to check.
@@ -122,7 +134,8 @@ class Database {
             throw new Error("addDance: choreographerName must not be an empty string.");
         }
 
-        // Run query
+        this.addDancer(choreographerEmail, choreographerID);
+  
         const query = "INSERT INTO Dances (choreographerID, choreographerEmail, choreographerName, styleDifficulty) VALUES (?, ?, ?, ?)";
         this.#db.prepare(query).run(
             choreographerID,
@@ -130,6 +143,9 @@ class Database {
             choreographerName,
             styleDifficulty
         );
+
+        const query2 = "UPDATE Dancers SET isChoreographer = ? WHERE email = ?";
+        this.#db.prepare(query2).run(true, choreographerEmail);
     }
 
 
@@ -142,7 +158,7 @@ class Database {
         this.#verifyExists("Dancers", "studentID", studentID);
         this.#verifyExists("Dances", "danceID", danceID);
 
-        const query = "INSERT INTO DanceParticipants (studentID, danceID) VALUES (?, ?)";
+        const query = "INSERT INTO Dances (studentID, danceID) VALUES (?, ?)";
         this.#db.prepare(query).run(studentID, danceID);
     }
 

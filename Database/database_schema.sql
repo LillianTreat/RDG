@@ -29,5 +29,6 @@ CREATE TABLE Dancers (
 	danceLevel TEXT,
 	experience TEXT,
 	-- photo BLOB,
-	isChoreographer BOOLEAN
+	isChoreographer BOOLEAN,
+	dancePreferences ARRAY
 );

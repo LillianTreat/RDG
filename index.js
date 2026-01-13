@@ -129,12 +129,13 @@ app.route('/login')
             res.render('login', {flag: 'LOGIN ERROR'});
         }
     });
-    
+
 
 app.route('/dancerForm')
     .get((req, res) => {
         const db = req.db;
         const logger = req.logger;
+        let email = req.body.email;
 
         let dances = db.getAllDances();
         let danceNames = [];
@@ -145,8 +146,34 @@ app.route('/dancerForm')
         res.render('dancerForm', { danceNames: danceNames });
     })
     .post((req, res) => {
-        
-    })
+        const db = req.db;
+        const logger = req.logger;
+        let email = req.body.email;
+
+        db.addDancerInfo(
+            req.body.name,
+            req.body.pronouns,
+            req.body.auditionNumber,
+            req.body.phone,
+            email,
+            req.body.classYear,
+            req.body.numDances,
+            req.body.pocDance,
+            req.body.grizzlies,
+            req.body.committee,
+            req.body.danceLevel,
+            req.body.experience
+        )
+
+        let dancePreferences = [];
+        for (let choice of ['first-choice', 'second-choice', 'third-choice', 'fourth-choice', 'fifth-choice']) {
+            dancePreferences.push(req.body[choice]);
+        }
+        db.addDancePreferences(email, dancePreferences);
+
+
+
+    });
 
 /* Start the server */
 app.listen(port, () => {
