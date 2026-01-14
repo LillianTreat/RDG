@@ -35,6 +35,15 @@ textarea {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+input[type="text"],
+input[type="email"] {
+    font-size: large;
+    padding: 0.6rem 0.7rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
 button,
 input[type="submit"] {
     margin-top: 1.5rem;
