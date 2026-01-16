@@ -82,3 +82,23 @@ input[type="submit"]:hover {
     cursor: pointer;
     z-index: 10; /* keeps it above other popup content */
 }
+
+.cancel-button {
+    background-color: lightgrey;
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+
+    position: absolute; 
+    bottom: 10px;
+    right: 100px;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+
+    cursor: pointer;
+}
