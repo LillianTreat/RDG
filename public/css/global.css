@@ -58,9 +58,13 @@ input[type="submit"] {
     transition: background-color 0.2s, transform 0.1s;
 }
 
-button:hover,
+button[type="submit"]:hover,
 input[type="submit"]:hover {
     background-color: #584fe0;
+}
+button[type="button"]:hover,
+input[type="button"]:hover {
+    background-color: grey;
 }
 
 .close-button {
@@ -84,21 +88,21 @@ input[type="submit"]:hover {
 }
 
 .cancel-button {
-    background-color: lightgrey;
-    color: black;
+    background-color: rgb(161, 158, 158);
+    color: white;
     font-size: 1rem;
     font-weight: 600;
 
     position: absolute; 
-    bottom: 10px;
+    bottom: 50px;
     right: 100px;
 
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border-radius: 50%;
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 8px;
     border: none;
     text-align: center;
 
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
 }
