@@ -1,0 +1,5 @@
+
+- Add styling for dance list on prezHomepage
+- Fix styling and spacing on dancer form 
+- Add functionality to the add dance dialog 
+
