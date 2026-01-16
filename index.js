@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const { Database } = require('./Database/db_interface');
 const data = require('./data/data.js');
-const express = require('express'); 
+const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const winston = require('winston');
@@ -27,7 +27,7 @@ const logger = winston.createLogger({
         }),
         winston.format.printf(info => `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`)
     ),
-    transports:[
+    transports: [
         new winston.transports.File({ filename: path.join(logDir, 'error.log'), level: 'error' }),
         new winston.transports.File({ filename: path.join(logDir, 'combined.log') })
     ]
@@ -41,7 +41,7 @@ app.use(express.static('public'));
 
 
 /************* Register Middleware ****************/
-app.use(bodyParser.urlencoded({extended: true})); //parse request body
+app.use(bodyParser.urlencoded({ extended: true })); //parse request body
 app.use(express.json()); //express' built in json parser supercedes body-parser
 
 /* Serve static assets (CSS, client JS, images) from the project root `css/` folder */
@@ -55,9 +55,9 @@ app.use((req, res, next) => {
 
 
 /************* My Middleware ****************/
-const attachDatabase = function (req, res, next){
-    req.db = db; 
-    next(); 
+const attachDatabase = function (req, res, next) {
+    req.db = db;
+    next();
 }
 app.use(attachDatabase);
 
@@ -80,58 +80,52 @@ if (process.env.TEST_MODE === "true") {
 *                      ROUTES
 * 
 ******************************************************************/
-app.route('/') 
-    .get((req, res) => { 
+app.route('/')
+    .get((req, res) => {
         res.redirect('/prezHomepage');
     });
 
-app.route('/signup')
+app.route('/signupLogin')
     .get((req, res) => {
-        res.render('signup');
-        })
-    .post((req, res) =>{ 
-        let db = req.db;
-        let email = req.body.email;
-        let studentID = req.body.studentID;
-
-        try{
-            db.addDancer(email, studentID);
-            console.log('successful signup');
-            if (db.dancerExists(email, studentID)) {
-                return res.render('login', { flag: 'USER EXISTS' });
-            }
-            else {
-                return res.render('login', { flag: 'SUCCESSFUL SIGNUP' });
-            }
-        }
-        catch (error){
-            console.log(error);
-            res.render('login', {flag: 'SIGNUP ERROR'});
-        }
-    });
-
-
-app.route('/login')
-    .get((req, res) => {
-        res.render('login');
+        res.render('signupLogin');
     })
-    .post((req, res) =>{
-        let db = req.db;
-        let email = req.body.email;
-        let studentID = req.body.studentID;
+app.post('/signup', (req, res) => {
+    let db = req.db;
+    let email = req.body.email;
+    let studentID = req.body.studentID;
 
-        try{
-            if (db.dancerExists(email, studentID)) {
-                return res.render('dancerForm', { flag: 'SUCCESSFUL LOGIN' });
-            }
-            else{
-                return res.render('login', {flag: 'INVALID CREDENTIALS'});
-            }
+    try {
+        db.addDancer(email, studentID);
+        console.log('successful signup');
+        if (db.dancerExists(email, studentID)) {
+            return res.render('signupLogin', { flag: 'USER EXISTS' });
         }
-        catch (error){
-            res.render('login', {flag: 'LOGIN ERROR'});
+        else {
+            return res.render('signupLogin', { flag: 'SUCCESSFUL SIGNUP' });
         }
-    });
+    }
+    catch (error) {
+        console.log(error);
+        res.render('signupLogin', { flag: 'SIGNUP ERROR' });
+    }
+});
+app.post('/login', (req, res) => {
+    let db = req.db;
+    let email = req.body.email;
+    let studentID = req.body.studentID;
+
+    try {
+        if (db.dancerExists(email, studentID)) {
+            return res.render('dancerForm', { flag: 'SUCCESSFUL LOGIN' });
+        }
+        else {
+            return res.render('signupLogin', { flag: 'INVALID CREDENTIALS' });
+        }
+    }
+    catch (error) {
+        res.render('signupLogin', { flag: 'LOGIN ERROR' });
+    }
+});
 
 
 app.route('/dancerForm')
@@ -175,26 +169,26 @@ app.route('/dancerForm')
 
     });
 
-    app.route('/prezHomepage') 
-        .get((req, res) => { 
-            const db = req.db;
+app.route('/prezHomepage')
+    .get((req, res) => {
+        const db = req.db;
 
-            const dances = db.getAllDances();
-            res.render('prezHomepage', { dances: dances });
-        })
-        app.post("/addDance",(req, res) => {
-            const db = req.db;
+        const dances = db.getAllDances();
+        res.render('prezHomepage', { dances: dances });
+    })
+app.post("/addDance", (req, res) => {
+    const db = req.db;
 
-            db.addDance(req.body.email, req.body.name);
-            res.redirect('/prezHomepage');
-        });
-        app.post("/removeDance",(req, res) => {
-            const db = req.db;
-            const { danceID } = req.body;
+    db.addDance(req.body.email, req.body.name);
+    res.redirect('/prezHomepage');
+});
+app.post("/removeDance", (req, res) => {
+    const db = req.db;
+    const { danceID } = req.body;
 
-            db.removeDance(danceID);
-            res.redirect('/prezHomepage');
-        });
+    db.removeDance(danceID);
+    res.redirect('/prezHomepage');
+});
 
 
 /* Start the server */
