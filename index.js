@@ -75,7 +75,11 @@ if (process.env.TEST_MODE === "true") {
 }
 
 
-/************* Routes ****************/
+/******************************************************************
+* 
+*                      ROUTES
+* 
+******************************************************************/
 app.route('/') 
     .get((req, res) => { 
         console.log('someone is on the local host!');
@@ -191,8 +195,8 @@ app.route('/dancerForm')
         db.addDance(req.body.email, req.body.name);
         res.redirect('/prezHomepage')
 
-
     });
+    
 
 /* Start the server */
 app.listen(port, () => {

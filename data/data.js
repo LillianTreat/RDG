@@ -108,43 +108,38 @@ const Dances = [
         danceID: 1,
         choreographerName: "Lillian Stafford",
         choreographerEmail: "ltstafford@pugetsound.edu",
-        styleDifficulty: "Intermediate/Advanced Jazz"
     },
     {
         danceID: 2,
         choreographerName: "Choreographer Two",
         choreographerEmail: "choreographer2@pugetsound.edu",
-        styleDifficulty: "Advanced"
     },
     {
         danceID: 3,
         choreographerName: "Choreographer Three",
         choreographerEmail: "choreographer3@pugetsound.edu",
-        styleDifficulty: "Beginner"
     },
     {
         danceID: 4,
         choreographerName: "Choreographer Four",
         choreographerEmail: "choreographer4@pugetsound.edu",
-        styleDifficulty: "Intermediate"
+      
     },
     {
         danceID: 5,
         choreographerName: "Choreographer Five",
         choreographerEmail: "choreographer5@pugetsound.edu",
-        styleDifficulty: "Intermediate/Advanced"
+
     },
     {
         danceID: 6,
         choreographerName: "Choreographer Six",
         choreographerEmail: "choreographer6@pugetsound.edu",
-        styleDifficulty: "Beginner/Intermediate"
     },
     {
         danceID: 7,
         choreographerName: "Choreographer Seven",
         choreographerEmail: "choreographer7@pugetsound.edu",
-        styleDifficulty: "Beginner"
     },
 ]
 
@@ -170,7 +165,7 @@ function addDancers(db) {
 
 function addDances(db) {
     for (let dance of Dances) {
-        db.addDance(dance.choreographerEmail, dance.choreographerName);
+        db.addDance(dance.choreographerEmail, dance.choreographerName, dance.danceID);
     }
 }
 

@@ -153,6 +153,12 @@ class Database {
         this.#db.prepare(query).run(email, danceID);
     }
 
+    removeDance(danceID) {
+        this.#verifyExists("Dances", "danceID", danceID);
+        const query = "DELETE FROM Dances WHERE danceID = ?";
+        this.#db.prepare(query).run(danceID);
+    }
+
     /******************************************************************
      * 
      *                      CHECKING methods

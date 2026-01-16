@@ -128,3 +128,16 @@
 1/13/2026, 3:50:35 PM [INFO]: GET /prezHomepage
 1/13/2026, 3:52:19 PM [INFO]: GET /prezHomepage
 1/13/2026, 4:01:30 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:08:01 PM [INFO]: GET /
+1/16/2026, 1:08:01 PM [INFO]: GET /dancerForm
+1/16/2026, 1:08:01 PM [INFO]: GET /favicon.ico
+1/16/2026, 1:08:07 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:08:29 PM [INFO]: POST /addDance
+1/16/2026, 1:10:16 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:10:23 PM [INFO]: POST /prezHomepage
+1/16/2026, 1:10:23 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:21:31 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:24:25 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:27:46 PM [INFO]: GET /prezHomepage
+1/16/2026, 1:27:49 PM [INFO]: POST /prezHomepage
+1/16/2026, 1:27:49 PM [INFO]: GET /prezHomepage
