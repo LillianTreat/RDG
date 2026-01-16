@@ -15,8 +15,8 @@
     <button type="button" id="openAddDanceDialog">Add Dance</button>
 
     <dialog class="dialog" id="addDanceDialog">
-        <form method="post">
-            <button class="close-button" id="closeDialog">X</button><br>
+        <form method="post" action="/addDance">
+            <button type="button" class="close-button" id="closeAddDanceDialog">X</button><br>
 
             <label for="email">Choreographer Email:</label>
             <input type="email" id="email" name="email" required> <br><br>
@@ -29,18 +29,19 @@
     </dialog>
 
     <ul id="danceList">
-        <% for (let dance of danceNames) { %>
-            <li id="dance_<%= dance.id %>"> <%= dance.name %> </li>
+        <% for (let dance of dances) { %>
+            <li id="dance_<%= dance.danceID %>" data-dance-id="<%= dance.danceID %>"> <%= dance.choreographerName %> </li>
         <% } %>
     </ul>
     
     <dialog class="dialog" id="removeDanceDialog">
-        <form method="post">
+        <form method="post" action="/removeDance">
             <p>Are you sure you want to remove this dance? <br>
-                (this action cannot be undone)</p>
-
-            <button type="submit">Remove Dance</button>
-            <button class="close-button" id="closeRemoveDanceDialog">Cancel</button>
+                (This action cannot be undone!)</p>
+            
+            <input type="hidden" name="danceID" id="deleteDanceId">
+            <button type="submit" id="confirmRemove" >Remove Dance</button>
+            <button type="button" class="close-button" id="closeRemoveDanceDialog">Cancel</button>
         </form>
     </dialog>
 </body>

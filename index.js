@@ -82,8 +82,7 @@ if (process.env.TEST_MODE === "true") {
 ******************************************************************/
 app.route('/') 
     .get((req, res) => { 
-        console.log('someone is on the local host!');
-        res.redirect('/dancerForm');
+        res.redirect('/prezHomepage');
     });
 
 app.route('/signup')
@@ -149,7 +148,6 @@ app.route('/dancerForm')
         res.render('dancerForm', { danceNames: danceNames });
     })
     .post((req, res) => {
-        console.log('into the post route!')
         const db = req.db;
         const logger = req.logger;
         const email = req.body.email;
@@ -178,25 +176,26 @@ app.route('/dancerForm')
     });
 
     app.route('/prezHomepage') 
-    .get((req, res) => { 
-        const db = req.db;
+        .get((req, res) => { 
+            const db = req.db;
 
-        let dances = db.getAllDances();
-        let danceNames = [];
-        for (let dance of dances) {
-            danceNames.push(dance.choreographerName);
-        }
+            const dances = db.getAllDances();
+            res.render('prezHomepage', { dances: dances });
+        })
+        app.post("/addDance",(req, res) => {
+            const db = req.db;
 
-        res.render('prezHomepage', { danceNames: danceNames });
-    })
-    .post((req, res) => {
-        const db = req.db;
+            db.addDance(req.body.email, req.body.name);
+            res.redirect('/prezHomepage');
+        });
+        app.post("/removeDance",(req, res) => {
+            const db = req.db;
+            const { danceID } = req.body;
 
-        db.addDance(req.body.email, req.body.name);
-        res.redirect('/prezHomepage')
+            db.removeDance(danceID);
+            res.redirect('/prezHomepage');
+        });
 
-    });
-    
 
 /* Start the server */
 app.listen(port, () => {

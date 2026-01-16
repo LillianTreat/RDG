@@ -105,39 +105,32 @@ const Dancers = [
 
 const Dances = [
     {
-        danceID: 1,
         choreographerName: "Lillian Stafford",
         choreographerEmail: "ltstafford@pugetsound.edu",
     },
     {
-        danceID: 2,
         choreographerName: "Choreographer Two",
         choreographerEmail: "choreographer2@pugetsound.edu",
     },
     {
-        danceID: 3,
         choreographerName: "Choreographer Three",
         choreographerEmail: "choreographer3@pugetsound.edu",
     },
     {
-        danceID: 4,
         choreographerName: "Choreographer Four",
         choreographerEmail: "choreographer4@pugetsound.edu",
       
     },
     {
-        danceID: 5,
         choreographerName: "Choreographer Five",
         choreographerEmail: "choreographer5@pugetsound.edu",
 
     },
     {
-        danceID: 6,
         choreographerName: "Choreographer Six",
         choreographerEmail: "choreographer6@pugetsound.edu",
     },
     {
-        danceID: 7,
         choreographerName: "Choreographer Seven",
         choreographerEmail: "choreographer7@pugetsound.edu",
     },

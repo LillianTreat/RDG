@@ -6,20 +6,26 @@ function registerEventListeners() {
         document.getElementById("addDanceDialog").showModal();
     });
 
-    document.getElementById("closeDialog").addEventListener("click", function(){
+    document.getElementById("closeAddDanceDialog").addEventListener("click", function(){
         document.getElementById("addDanceDialog").close();
     });
 
-    document.querySelectorAll("[id^='dance_']").forEach(function(danceElement) {
-        danceElement.addEventListener("click", function(event){
-            document.getElementById("removeDanceDialog").showModal();
-        });
-    });
 
     document.getElementById("closeRemoveDanceDialog").addEventListener("click", function(){
         document.getElementById("removeDanceDialog").close();
-    })
+    });
 
+
+    const danceList = document.getElementById("danceList");
+
+    danceList.addEventListener("click", (event) => {
+        const li = event.target.closest("li");
+        if (!li) return; // clicked outside an li
+
+        const danceID = li.dataset.danceId; //must be lowercase Id DO NOT CHANGE
+        document.getElementById("deleteDanceId").value = danceID;
+        document.getElementById("removeDanceDialog").showModal();
+});
 }
 
 

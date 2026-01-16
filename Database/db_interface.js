@@ -124,11 +124,14 @@ class Database {
         if (!this.dancerExists(choreographerEmail)){
             this.addDancer(choreographerEmail);
         };
-        
-        const query = "INSERT INTO Dances (choreographerEmail, choreographerName) VALUES (?, ?)";
+
+        let danceID = this.#db.prepare("SELECT MAX(danceID) FROM Dances").get()["MAX(danceID)"] + 1;
+
+        const query = "INSERT INTO Dances (choreographerEmail, choreographerName, danceID) VALUES (?, ?, ?)";
         this.#db.prepare(query).run(
             choreographerEmail,
             choreographerName,
+            danceID
         );
 
         const query2 = "UPDATE Dancers SET isChoreographer = ? WHERE email = ?";
@@ -155,6 +158,7 @@ class Database {
 
     removeDance(danceID) {
         this.#verifyExists("Dances", "danceID", danceID);
+        
         const query = "DELETE FROM Dances WHERE danceID = ?";
         this.#db.prepare(query).run(danceID);
     }
