@@ -10,171 +10,182 @@
     <link rel="stylesheet" href="/css/global.css">
 </head>
 
+
 <body>
-    <h1>Dancer Information</h1>
-    <form action="/submitDancerForm" method="post">
+    <div class="form-container">
+        
+        <form action="/submitDancerForm" method="post">
+            <h2>Dancer Information</h2>
+        
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pronouns">Pronouns</label>
+                <input type="text" id="pronouns" name="pronouns" required>
+            </div>
+
+            <div class="form-group">
+                <label for="auditionNumber">Audition #</label>
+                <input type="number" id="auditionNumber" name="auditionNumber" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="classYear">Class Year</label>
+                <select id="classYear" name="classYear">
+                    <option value="first-year">First Year</option>
+                    <option value="sophomore">Sophomore</option>
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                    <option value="grad">Grad Student</option>
+                </select>
+            </div>
+
+            <div class="form-group inline">
+                <span class="group-label">Number of Dances</span>
+                <label>
+                    <input type="radio" name="numDances" value="1"> 1
+                </label>
+                <label>
+                    <input type="radio" name="numDances" value="2"> 2
+                </label>
+                <label>
+                    <input type="radio" name="numDances" value="3"> 3
+                </label>
+            </div>
+
+            <div class="form-group inline">
+                <label>
+                    Would you like to participate in the POC dance?
+                    <input type="checkbox" id="pocDance" name="pocDance">
+                </label>
+            </div>
+
+            <div class="form-group inline">
+                <label>
+                    Would you like to participate in RDG Grizzlies?
+                    <input type="checkbox" id="grizzlies" name="grizzlies">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="committee">Committee Preference</label>
+                <select id="committee" name="committee">
+                    <option value="none">No Committee</option>
+                    <option value="flowers">Flowers and Merch</option>
+                    <option value="tickets">Tickets and Programs</option>
+                    <option value="photos">Photos and Videos</option>
+                    <option value="marketing">Marketing and Social Media</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="danceLevel">Dance Level (Beginner → Advanced)</label>
+                <input type="range" id="danceLevel" name="danceLevel" min="1" max="5">
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Please describe your previous dance experience</label>
+                <textarea id="experience" name="experience" rows="4" required></textarea>
+            </div>
+
+            <input type="submit" value="Submit Form">
+
+        </form>
 
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-        </div>
+        <form action="/submitDancePreferences" method="post">
+            <h2>Dance Preferences</h2>
 
-        <div class="form-group">
-            <label for="pronouns">Pronouns</label>
-            <input type="text" id="pronouns" name="pronouns" required>
-        </div>
+            <div class="form-group">
+                <label for="firstChoice">First Choice</label>
+                <select name="firstChoice" id="firstChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="auditionNumber">Audition #</label>
-            <input type="number" id="auditionNumber" name="auditionNumber" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="secondChoice">Second Choice</label>
+                <select name="secondChoice" id="secondChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (let dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required>
-        </div>
+            <div class="form-group">
+                <label for="thirdChoice">Third Choice</label>
+                <select name="thirdChoice" id="thirdChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (let dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+            <div class="form-group">
+                <label for="fourthChoice">Fourth Choice</label>
+                <select name="fourthChoice" id="fourthChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (let dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="classYear">Class Year</label>
-            <select id="classYear" name="classYear">
-                <option value="first-year">First Year</option>
-                <option value="sophomore">Sophomore</option>
-                <option value="junior">Junior</option>
-                <option value="senior">Senior</option>
-                <option value="grad">Grad Student</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="fifthChoice">Fifth Choice</label>
+                <select name="fifthChoice" id="fifthChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (let dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group inline">
-            <span class="group-label">Number of Dances</span>
-            <label>
-                <input type="radio" name="numDances" value="1"> 1
-            </label>
-            <label>
-                <input type="radio" name="numDances" value="2"> 2
-            </label>
-            <label>
-                <input type="radio" name="numDances" value="3"> 3
-            </label>
-        </div>
+            <div class="form-group">
+                <label for="sixthChoice">Sixth Choice</label>
+                <select name="sixthChoice" id="sixthChoice" class="dance-choice" required>
+                    <option value="" disabled selected>Select a dance…</option>
+                    <% for (dance of danceNames) { %>
+                        <option value="<%= dance %>">
+                            <%= dance %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
 
-        <div class="form-group inline">
-            <label>
-                Would you like to participate in the POC dance?  
-                <input type="checkbox" id="pocDance" name="pocDance">
-            </label>
-        </div>
-
-        <div class="form-group inline">
-            <label>
-                Would you like to participate in RDG Grizzlies?  
-                <input type="checkbox" id="grizzlies" name="grizzlies">
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label for="committee">Committee Preference</label>
-            <select id="committee" name="committee">
-                <option value="none">No Committee</option>
-                <option value="flowers">Flowers and Merch</option>
-                <option value="tickets">Tickets and Programs</option>
-                <option value="photos">Photos and Videos</option>
-                <option value="marketing">Marketing and Social Media</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="danceLevel">Dance Level (Beginner → Advanced)</label>
-            <input type="range" id="danceLevel" name="danceLevel" min="1" max="5">
-        </div>
-
-        <div class="form-group">
-            <label for="experience">Please describe your previous dance experience</label>
-            <textarea id="experience" name="experience" rows="4" required></textarea>
-        </div>
-
-        <input type="submit" value="Submit Form">
-
-    </form>
-
-    <h1>Dance Preferences</h1>
-
-    <form action="/submitDancePreferences" method="post">
-
-        <div>
-
-        </div>
-
-        <div class="form-group">
-            <label for="firstChoice">First Choice</label>
-            <select name="firstChoice" id="firstChoice"  class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="secondChoice">Second Choice</label>
-            <select name="secondChoice" id="secondChoice"  class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (let dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="thirdChoice">Third Choice</label>
-            <select name="thirdChoice" id="thirdChoice"  class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (let dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="fourthChoice">Fourth Choice</label>
-            <select name="fourthChoice" id="fourthChoice"  class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (let dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="fifthChoice">Fifth Choice</label>
-            <select name="fifthChoice" id="fifthChoice"  class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (let dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="sixthChoice">Sixth Choice</label>
-            <select name="sixthChoice" id="sixthChoice" class="dance-choice" required>
-                <option value="" disabled selected>Select a dance…</option>
-                <% for (dance of danceNames) { %>
-                    <option value="<%= dance %>"><%= dance %></option>
-                <% } %>
-            </select>
-        </div>
-
-        <button type="reset" id="clear-form">Reset Choices</button>
-        <a href="data/tempDanceList.pdf" target="_blank">View Dance List</a>
-    </form>
-
+            <button type="reset" id="clear-form">Reset Choices</button>
+            <a href="data/tempDanceList.pdf" target="_blank">View Dance List</a>
+        </form>
+    </div>
 </body>
+
 
 </html>

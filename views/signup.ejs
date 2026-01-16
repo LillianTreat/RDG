@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/global.css">
     <title>Dancer Signup</title>
 </head>
-<body>
-    <h1>Signup to dance with RDG!</h1>
-    <br>
-    <form action="/signup" method="post">
-        <label for="user-email">Email:</label>
-        <input type="email" id="user-email" name="email"></input><br><br>
 
-        <label for="user-password">StudentID:</label>
-        <input type="password" id="StudentID" name="StudentID"></input><br><br>
-        
-        <button type="submit">Signup</button>
-    </form>
+<body>
+    <h1>Welcome to RDG!</h1>
+    <br>
+    <div class="form-container">
+        <form action="/signup" method="post">
+            <h2>Signup</h2>
+            <label for="user-email">UPS Email:</label>
+            <input type="email" id="user-email" name="email"></input><br><br>
+
+            <label for="user-password">StudentID:</label>
+            <input type="password" id="StudentID" name="StudentID"></input><br><br>
+
+            <button type="submit">Signup</button>
+        </form>
+
+        <form action="/login" method="POST">
+            <h2>Login</h2>
+            <label for="email">UPS Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="studentid">Student ID:</label>
+            <input type="password" id="studentid" name="studentid" required><br><br>
+
+            <button type="submit" id="loginSubmit" name="loginSubmit">Login</button>
+        </form>
+
+        <div>
+            <% if (flag==='SUCCESSFUL SIGNUP' ) { %>
+                <p>
+                    Signup was successful! Please login.
+                </p>
+                <% } else if (flag==='INVALID CREDENTIALS' ) { %>
+                    <p>
+                        No such dancer exists. Please try again or signup.
+                    </p>
+                    <% } else if (flag==='USER EXISTS' ) { %>
+                        <p>
+                            A dancer with this email and studentID already exists. Please login instead.
+                        </p>
+                        <% }else if (flag==='LOGIN ERROR' ) { %>
+                            <p>
+                                Unable to complete login. Please try again.
+                            </p>
+                            <% } %>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
