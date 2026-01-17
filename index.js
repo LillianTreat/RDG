@@ -155,14 +155,12 @@ app.route('/dancerForm')
             req.body.classYear,
             req.body.numDances,
             req.body.pocDance,
-            req.body.grizzlies,
-            req.body.committee,
             req.body.danceLevel,
             req.body.experience
         )
 
         let dancePreferences = [];
-        for (let choice of ['first-choice', 'second-choice', 'third-choice', 'fourth-choice', 'fifth-choice']) {
+        for (let choice of ['first-choice', 'second-choice', 'third-choice', 'fourth-choice', 'fifth-choice', 'sixth-choice']) {
             dancePreferences.push(req.body[choice]);
         }
         db.addDancePreferences(email, dancePreferences);

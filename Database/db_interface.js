@@ -77,12 +77,12 @@ class Database {
         );
     }
 
-    addDancerInfo(name, pronouns, auditionNumber, phone, email, classYear, numDances, pocDance, grizzlies, committee, danceLevel, experience, dancePreferences) {
+    addDancerInfo(name, pronouns, auditionNumber, phone, email, classYear, numDances, pocDance, danceLevel, experience, dancePreferences) {
         if (!this.dancerExists(email)) {
             throw new Error("addDancerInfo: dancer does not exist.");
         }
 
-        const query = "UPDATE Dancers SET name = ?, pronouns = ?, auditionNumber = ?, phone = ?, classYear = ?, numDances = ?, pocDance = ?, grizzlies = ?, committee = ?, danceLevel = ?, experience = ?, isChoreographer = NULL, dancePreferences = NULL WHERE email = ?";
+        const query = "UPDATE Dancers SET name = ?, pronouns = ?, auditionNumber = ?, phone = ?, classYear = ?, numDances = ?, pocDance = ?, danceLevel = ?, experience = ?, isChoreographer = NULL, dancePreferences = NULL WHERE email = ?";
         this.#db.prepare(query).run(
             name,
             pronouns,
@@ -92,8 +92,6 @@ class Database {
             classYear,
             numDances,
             pocDance,
-            grizzlies,
-            committee,
             danceLevel,
             experience,
             dancePreferences,
@@ -158,7 +156,7 @@ class Database {
 
     removeDance(danceID) {
         this.#verifyExists("Dances", "danceID", danceID);
-        
+
         const query = "DELETE FROM Dances WHERE danceID = ?";
         this.#db.prepare(query).run(danceID);
     }

@@ -24,8 +24,6 @@ CREATE TABLE Dancers (
 	classYear TEXT,
 	numDances NUMBER,
 	pocDance BOOLEAN,
-	grizzlies BOOLEAN,
-	committee TEXT,
 	danceLevel TEXT,
 	experience TEXT,
 	-- photo BLOB,

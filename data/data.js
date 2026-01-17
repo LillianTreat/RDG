@@ -60,8 +60,6 @@ const Dancers = [
         classYear: "Sophomore",
         numDances: 2,
         pocDance: 0,
-        grizzlies: 1,
-        committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
         isChoreographer: 1
@@ -77,8 +75,6 @@ const Dancers = [
         classYear: "Sophomore",
         numDances: 2,
         pocDance: 0,
-        grizzlies: 1,
-        committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
         isChoreographer: 0
@@ -94,8 +90,6 @@ const Dancers = [
         classYear: "Senior",
         numDances: 1,
         pocDance: 0,
-        grizzlies: 1,
-        committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
         isChoreographer: 0
@@ -164,7 +158,7 @@ function addDances(db) {
 
 function addDancerInfo(db) {
     for (let dancer of Dancers) {
-        db.addDancerInfo(dancer.name, dancer.pronouns, dancer.auditionNumber, dancer.phone, dancer.email, dancer.classYear, dancer.numDances, dancer.pocDance, dancer.grizzlies, dancer.committee, dancer.danceLevel, dancer.experience, dancer.isChoreographer);
+        db.addDancerInfo(dancer.name, dancer.pronouns, dancer.auditionNumber, dancer.phone, dancer.email, dancer.classYear, dancer.numDances, dancer.pocDance, dancer.danceLevel, dancer.experience, dancer.isChoreographer);
     }
 }
 
