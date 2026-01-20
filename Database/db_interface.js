@@ -69,8 +69,8 @@ class Database {
         }
 
         // Insert NULL for all other fields
-        const query = `INSERT INTO Dancers (email, studentID, name, pronouns, auditionNumber, phone, classYear, numDances, pocDance, grizzlies, committee, danceLevel, experience, isChoreographer) 
-                       VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
+        const query = `INSERT INTO Dancers (email, studentID, name, pronouns, auditionNumber, phone, classYear, numDances, pocDance, danceLevel, experience, isChoreographer) 
+                       VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
         this.#db.prepare(query).run(
             email,
             studentID

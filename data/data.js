@@ -9,8 +9,6 @@ const Dancers = [
         classYear: "Sophomore",
         numDances: 3,
         pocDance: 0,
-        grizzlies: 1,
-        committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
         isChoreographer: 1
@@ -26,8 +24,6 @@ const Dancers = [
         classYear: "Sophomore",
         numDances: 2,
         pocDance: 1,
-        grizzlies: 0,
-        committee: "No Committee",
         danceLevel: "meow",
         experience: "meow",
         isChoreographer: 0
@@ -43,8 +39,6 @@ const Dancers = [
         classYear: "Sophomore",
         numDances: 3,
         pocDance: 0,
-        grizzlies: 1,
-        committee: "No Committee",
         danceLevel: "foo",
         experience: "bar",
         isChoreographer: 1
